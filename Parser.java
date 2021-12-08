@@ -9,27 +9,27 @@ public class Parser {
     public Commands getCommand()
     {
         String inputLine;
-        String word1 = null;
-        String word2 = null;
+        String word_action = null;
+        String word_direction = null;
 
         System.out.print(" > ");
 
         inputLine = reader.nextLine();
 
-        Scanner tokenizer = new Scanner(inputLine);
-        while(tokenizer.hasNext()){
-        word1 = tokenizer.next();
-        if(tokenizer.hasNext()) {
-            word2 = tokenizer.next();
+        Scanner inputData = new Scanner(inputLine);
+        while(inputData.hasNext()){
+            word_action = inputData.next();
+        if(inputData.hasNext()) {
+            word_direction = inputData.next();
         }
     }
 
 
-        if(commands.isCommand(word1)) {
-            return new Commands(word1, word2);
+        if(commands.isCommand(word_action)) {
+            return new Commands(word_action, word_direction);
         }
         else {
-            return new Commands(null, word2);
+            return new Commands(null, word_direction);
         }
     }
 }
