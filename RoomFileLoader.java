@@ -25,16 +25,8 @@ public class RoomFileLoader {
         return instance;
     }
 
-    private final List<Hashtable<String,String>> roomsToCreate = new ArrayList<>();
-
-
-    public void loadRooms(){
-        parseRooms();
-        instantiator.createRoomInstances(roomsToCreate);
-        instantiator.setExitsForRoomInstances(roomsToCreate);
-    }
-
-    private void parseRooms(){
+    public List<Hashtable<String,String>> parseRooms(){
+        List<Hashtable<String,String>> roomsToCreate = new ArrayList<>();
         try {
             Object jsonParse = new JSONParser().parse(new FileReader("rooms.json"));
             JSONArray roomJsonArray = (JSONArray) jsonParse;
@@ -82,12 +74,10 @@ public class RoomFileLoader {
         catch (IOException | ParseException e){
             e.printStackTrace();
         }
-
+        return roomsToCreate;
     }
 
 
-    public Room getRoomInstanceByName(String roomName){
-        return instantiator.getRoomInstanceByName(roomName);
-    }
+
 
 }

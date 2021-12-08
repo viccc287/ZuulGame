@@ -1,11 +1,11 @@
 
 public class Game {
     private Room currentRoom;
-    private final RoomFileLoader roomFileLoader = RoomFileLoader.getInstance();
+    private final RoomManager roomManager = RoomManager.getInstance();
 
     public Game() {
-        roomFileLoader.loadRooms();
-        currentRoom = roomFileLoader.getRoomInstanceByName("outside");
+        roomManager.createRooms();
+        currentRoom = roomManager.getRoomInstanceByName("outside");
     }
 
 }
