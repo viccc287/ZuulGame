@@ -1,12 +1,12 @@
 
 public class Room
 {
-    public String name;
-    public String description;
-    public Room northExit;
-    public Room southExit;
-    public Room eastExit;
-    public Room westExit;
+    private final String name;
+    private final String description;
+    private Room northExit;
+    private Room southExit;
+    private Room eastExit;
+    private Room westExit;
 
     public Room(String name, String description)
     {
