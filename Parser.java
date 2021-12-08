@@ -12,17 +12,18 @@ public class Parser {
         String word1 = null;
         String word2 = null;
 
-        System.out.print("> ");
+        System.out.print(" > ");
 
         inputLine = reader.nextLine();
 
         Scanner tokenizer = new Scanner(inputLine);
+        while(tokenizer.hasNext()){
+        word1 = tokenizer.next();
         if(tokenizer.hasNext()) {
-            word1 = tokenizer.next();
-            if(tokenizer.hasNext()) {
-                word2 = tokenizer.next();
-            }
+            word2 = tokenizer.next();
         }
+    }
+
 
         if(commands.isCommand(word1)) {
             return new Commands(word1, word2);
