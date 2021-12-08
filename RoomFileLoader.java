@@ -1,6 +1,4 @@
 import exceptions.RoomFileKeyException;
-import exceptions.RoomNotFoundException;
-import exceptions.RoomNullException;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -8,7 +6,6 @@ import org.json.simple.parser.ParseException;
 
 import java.io.FileReader;
 import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.List;
@@ -16,15 +13,25 @@ import java.util.List;
 @SuppressWarnings("ForLoopReplaceableByForEach")
 public class RoomFileLoader {
 
+    private static RoomFileLoader instance;
+
+    private final RoomInstantiator instantiator = RoomInstantiator.getInstance();
+
+    private RoomFileLoader(){
+
+    }
+    public static RoomFileLoader getInstance() {
+        if (instance == null) instance = new RoomFileLoader();
+        return instance;
+    }
+
     private final List<Hashtable<String,String>> roomsToCreate = new ArrayList<>();
-    private final List<String> roomsToCreateNames = new ArrayList<>();
-    private final Hashtable<String,Room> roomInstances = new Hashtable<>();
 
 
     public void loadRooms(){
         parseRooms();
-        createRoomInstances();
-        setExitsForRoomInstances();
+        instantiator.createRoomInstances(roomsToCreate);
+        instantiator.setExitsForRoomInstances(roomsToCreate);
     }
 
     private void parseRooms(){
@@ -78,71 +85,9 @@ public class RoomFileLoader {
 
     }
 
-    private void createRoomInstances(){
 
-        for (Hashtable<String,String> roomToCreate : roomsToCreate){
-            String roomToCreateName = roomToCreate.get("name");
-            String roomToCreateDescription = roomToCreate.get("description");
-            try{
-
-                if (roomToCreateName.equals("")) throw new RoomNullException("Room name key in file can not be empty");
-                roomsToCreateNames.add(roomToCreateName);
-
-                    Room roomInstance = Room.class.getDeclaredConstructor(String.class,String.class).newInstance(roomToCreateName,roomToCreateDescription);
-
-                    roomInstances.put(roomToCreateName,roomInstance);
-                }
-                catch (InvocationTargetException | InstantiationException | IllegalAccessException | NoSuchMethodException | RoomNullException e) {
-                    e.printStackTrace();
-                } {
-
-                }
-
-
-        }
-
+    public Room getRoomInstanceByName(String roomName){
+        return instantiator.getRoomInstanceByName(roomName);
     }
 
-    private void setExitsForRoomInstances(){
-
-        roomsToCreateNames.add(""); //Para que sea válido dejar las salidas vacías.
-
-        for (Hashtable<String,String> roomToCreate : roomsToCreate){
-
-            String roomToCreateName = roomToCreate.get("name");
-
-            List<String> roomToCreateExits = new ArrayList<>();
-
-            String roomToCreateNorthExit = roomToCreate.get("northExit");
-            roomToCreateExits.add(roomToCreateNorthExit);
-
-            String roomToCreateEastExit = roomToCreate.get("eastExit");
-            roomToCreateExits.add(roomToCreateEastExit);
-
-            String roomToCreateSouthExit = roomToCreate.get("southExit");
-            roomToCreateExits.add(roomToCreateSouthExit);
-
-            String roomToCreateWestExit = roomToCreate.get("westExit");
-
-
-            roomToCreateExits.add(roomToCreateWestExit);
-
-
-            if (roomsToCreateNames.containsAll(roomToCreateExits)){
-                Room roomInstanceToSet = roomInstances.get(roomToCreateName);
-                Room roomNorthExitToSet = roomInstances.get(roomToCreateNorthExit);
-                Room roomEastExitToSet = roomInstances.get(roomToCreateEastExit);
-                Room roomSouthExitToSet = roomInstances.get(roomToCreateSouthExit);
-                Room roomWestExitToSet = roomInstances.get(roomToCreateWestExit);
-
-                roomInstanceToSet.setExits(roomNorthExitToSet,roomEastExitToSet,roomSouthExitToSet,roomWestExitToSet);
-            }
-            else throw new RoomNotFoundException("Error: exit \""+roomToCreateName+"\" does not match any room name provided in rooms.json file");
-        }
-
-    }
-
-    public Hashtable<String, Room> getRoomInstances() {
-        return roomInstances;
-    }
 }
