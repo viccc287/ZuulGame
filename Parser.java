@@ -1,9 +1,10 @@
 import java.util.Scanner;
 public class Parser {
-    private Scanner reader;
-    private CommandWords commands;
+    private final Scanner reader;
+    private final CommandWords commands;
     public Parser()
     {
+        commands = CommandWords.getInstance();
         reader = new Scanner(System.in);
     }
     public Commands getCommand()
@@ -32,6 +33,11 @@ public class Parser {
             return new Commands(null, word_direction);
         }
     }
+
+    public String[] getValidCommands(){
+        return commands.getValidCommands();
+    }
+
 }
 
 

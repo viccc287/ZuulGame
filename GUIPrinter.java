@@ -28,13 +28,15 @@ public class GUIPrinter {
         System.out.println();
     }
 
-    public void printHelp()
+    public void printHelp(String[] validCommands)
     {
         System.out.println("You are lost. You are alone. You wander");
         System.out.println("around at the university.");
         System.out.println();
-        System.out.println("Your command words are:");
-        System.out.println("   go quit help");
+        System.out.println("Your command words are:  ");
+        for(String validCommand : validCommands){
+            System.out.print(validCommand + " ");
+        }
     }
 
     public void printGoodbye(){

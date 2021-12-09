@@ -2,6 +2,8 @@ public class CommandWords {
 
     private static CommandWords instance;
 
+    private final String[] validCommands = {"go", "quit", "help"};
+
     private CommandWords(){
 
     }
@@ -10,9 +12,6 @@ public class CommandWords {
         if (instance == null) return new CommandWords();
         else return instance;
     }
-
-    private final String[] validCommands = {"go", "quit", "help"};
-
 
     public boolean isCommand(String command) {
         for (String validCommand : validCommands) {
