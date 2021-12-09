@@ -19,12 +19,18 @@ public class CommandProcessor {
         }
 
         String commandWord = command.getActionWord();
-        if (commandWord.equals("help"))
-            guiPrinter.printHelp(parser.getValidCommands());
-        else if (commandWord.equals("go"))
-            goRoom(command);
-        else if (commandWord.equals("quit"))
-            wantToQuit = quit(command);
+
+        switch (commandWord) {
+            case "help":
+                guiPrinter.printHelp(parser.getValidCommands());
+                break;
+            case "go":
+                goRoom(command);
+                break;
+            case "quit":
+                wantToQuit = quit(command);
+                break;
+        }
 
         return wantToQuit;
     }
@@ -38,17 +44,20 @@ public class CommandProcessor {
         String direction = command.getDirectionWord();
 
         Room nextRoom = null;
-        if (direction.equals("north")) {
-            nextRoom = currentRoom.getNorthExit();
-        }
-        if (direction.equals("east")) {
-            nextRoom = currentRoom.getEastExit();
-        }
-        if (direction.equals("south")) {
-            nextRoom = currentRoom.getSouthExit();
-        }
-        if (direction.equals("west")) {
-            nextRoom = currentRoom.getWestExit();
+
+        switch (direction) {
+            case "north":
+                nextRoom = currentRoom.getNorthExit();
+                break;
+            case "east":
+                nextRoom = currentRoom.getEastExit();
+                break;
+            case "south":
+                nextRoom = currentRoom.getSouthExit();
+                break;
+            case "west":
+                nextRoom = currentRoom.getWestExit();
+                break;
         }
 
         if (nextRoom == null) {
