@@ -7,7 +7,7 @@ public class Parser {
         commands = CommandWords.getInstance();
         reader = new Scanner(System.in);
     }
-    public Commands getCommand()
+    public Command getCommand()
     {
         String inputLine;
         String word_action = null;
@@ -27,10 +27,10 @@ public class Parser {
 
 
         if(commands.isCommand(word_action)) {
-            return new Commands(word_action, word_direction);
+            return new Command(word_action, word_direction);
         }
         else {
-            return new Commands(null, word_direction);
+            return new Command(null, word_direction);
         }
     }
 
