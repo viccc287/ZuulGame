@@ -50,6 +50,7 @@ public class RoomFileLoader {
                     if (roomName == null)
                         throw new RoomFileKeyException("Error: Key \"name\" for some room does not exist in rooms.json file");
 
+                    //roomJson.get(key) devolverá nulo si no encuentra la key en el JSON, así que se va verificando
                     String roomDescription = (String) roomJson.get("description");
                     checkStringIsNotNull(roomDescription,"description",roomName);
 
