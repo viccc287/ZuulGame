@@ -19,7 +19,7 @@ public class CommandProcessor {
             return false;
         }
 
-        String commandWord = command.getCommandWord();
+        String commandWord = command.getActionWord();
         if (commandWord.equals("help"))
             guiPrinter.printHelp(parser.getValidCommands());
         else if (commandWord.equals("go"))
@@ -32,12 +32,12 @@ public class CommandProcessor {
 
     private void goRoom(Command command)
     {
-        if(!command.hasSecondWord()) {
+        if(!command.hasDirectionWord()) {
             guiPrinter.printNoDirectionMessage();
             return;
         }
 
-        String direction = command.getSecondWord();
+        String direction = command.getDirectionWord();
 
         Room nextRoom = null;
         if(direction.equals("north")) {
@@ -67,7 +67,7 @@ public class CommandProcessor {
 
     private boolean quit(Command command)
     {
-        if(command.hasSecondWord()) {
+        if(command.hasDirectionWord()) {
             guiPrinter.printInvalidQuitMessage();
             return false;
         }
