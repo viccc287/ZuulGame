@@ -1,8 +1,8 @@
-public class Commands {
+public class Command {
     private final String commandWord;
     private final String secondWord;
 
-    public Commands(String action, String direction) {
+    public Command(String action, String direction) {
         commandWord = action;
         this.secondWord = direction;
     }

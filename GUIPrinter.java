@@ -37,6 +37,7 @@ public class GUIPrinter {
         for(String validCommand : validCommands){
             System.out.print(validCommand + " ");
         }
+        System.out.println();
     }
 
     public void printGoodbye(){
@@ -54,9 +55,9 @@ public class GUIPrinter {
     public void printInvalidExitMessage(){
         System.out.println("There is no door!");
     }
-
-    public void printPrompt(){
-        System.out.println("> ");
+    public void printInvalidQuitMessage(){
+        System.out.println("Quit what?");
     }
+
 
 }
