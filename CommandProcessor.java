@@ -8,11 +8,11 @@ public class CommandProcessor {
         this.guiPrinter = guiPrinter;
     }
 
-    public boolean processCommand(Parser parser)
+    public boolean processCommand(CommandParser commandParser)
     {
         boolean wantToQuit = false;
 
-        Command command = parser.getCommand();
+        Command command = commandParser.getCommand();
 
         if(command.isUnknown()) {
             guiPrinter.printUnknownCommandMessage();
@@ -21,7 +21,7 @@ public class CommandProcessor {
 
         String commandWord = command.getCommandWord();
         if (commandWord.equals("help"))
-            guiPrinter.printHelp(parser.getValidCommands());
+            guiPrinter.printHelp(commandParser.getValidCommands());
         else if (commandWord.equals("go"))
             goRoom(command);
         else if (commandWord.equals("quit"))
