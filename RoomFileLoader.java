@@ -10,12 +10,9 @@ import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.List;
 
-@SuppressWarnings("ForLoopReplaceableByForEach")
 public class RoomFileLoader {
 
     private static RoomFileLoader instance;
-
-    private final RoomInstantiator instantiator = RoomInstantiator.getInstance();
 
     private String startingRoomName;
 
@@ -28,6 +25,7 @@ public class RoomFileLoader {
     }
 
     public List<Hashtable<String,String>> parseRooms(){
+
         List<Hashtable<String,String>> roomsToCreate = new ArrayList<>();
         try {
             Object jsonParse = new JSONParser().parse(new FileReader("rooms.json"));
@@ -35,11 +33,12 @@ public class RoomFileLoader {
 
             for (int i = 0; i < roomJsonArray.size(); i++) {
 
+                //Cada objeto JSON del archivo se parsea a una Hashtable donde la key es su respectivo atributo
                 Hashtable<String, String> roomAttributes = new Hashtable<>();
 
                 JSONObject roomJson = (JSONObject) roomJsonArray.get(i);
 
-                if (i == 0){
+                if (i == 0){ //Para el primer objeto JSON, que debe contener la Room de inicio
                     String startingRoomName = (String) roomJson.get("startingRoom");
                     if (startingRoomName == null)
                         throw new RoomFileKeyException("Error: Key \"startingRoom\" does not exist in rooms.json file");
@@ -52,24 +51,19 @@ public class RoomFileLoader {
                         throw new RoomFileKeyException("Error: Key \"name\" for some room does not exist in rooms.json file");
 
                     String roomDescription = (String) roomJson.get("description");
-                    if (roomDescription == null)
-                        throw new RoomFileKeyException("Error: Key \"description\" for room \"" + roomName + "\" does not exist in rooms.json file");
+                    checkStringIsNotNull(roomDescription,"description",roomName);
 
                     String roomNorthExit = (String) roomJson.get("northExit");
-                    if (roomNorthExit == null)
-                        throw new RoomFileKeyException("Error: Key \"northExit\" for room \"" + roomName + "\" does not exist in rooms.json file");
+                    checkStringIsNotNull(roomNorthExit,"northExit",roomName);
 
                     String roomEastExit = (String) roomJson.get("eastExit");
-                    if (roomEastExit == null)
-                        throw new RoomFileKeyException("Error: Key \"eastExit\" for room \"" + roomName + "\" does not exist in rooms.json file");
+                    checkStringIsNotNull(roomEastExit,"eastExit",roomName);
 
                     String roomSouthExit = (String) roomJson.get("southExit");
-                    if (roomSouthExit == null)
-                        throw new RoomFileKeyException("Error: Key \"southExit\" for room \"" + roomName + "\" does not exist in rooms.json file");
+                    checkStringIsNotNull(roomSouthExit,"southExit",roomName);
 
                     String roomWestExit = (String) roomJson.get("westExit");
-                    if (roomWestExit == null)
-                        throw new RoomFileKeyException("Error: Key \"westExit\" for room \"" + roomName + "\" does not exist in rooms.json file");
+                    checkStringIsNotNull(roomWestExit,"westExit",roomName);
 
                     roomAttributes.put("name", roomName);
                     roomAttributes.put("description", roomDescription);
@@ -93,5 +87,9 @@ public class RoomFileLoader {
         return startingRoomName;
     }
 
+    private void checkStringIsNotNull(String string, String keyThatDoesntExists, String roomName){
+        if (string == null) throw new RoomFileKeyException("Error: Key \""+keyThatDoesntExists+"\" for room \"" + roomName + "\" does not exist in rooms.json file");
+    }
+    //Método auxiliar para evitar repetición de código en parseRooms()
 
 }
