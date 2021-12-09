@@ -8,10 +8,11 @@ public class CommandProcessor {
         this.guiPrinter = guiPrinter;
     }
 
-    public boolean processCommand(Parser parser) {
+    public boolean processCommand(CommandParser commandParser)
+    {
         boolean wantToQuit = false;
 
-        Command command = parser.getCommand();
+        Command command = commandParser.getCommand();
 
         if (command.isUnknown()) {
             guiPrinter.printUnknownCommandMessage();
@@ -22,7 +23,7 @@ public class CommandProcessor {
 
         switch (commandWord) {
             case "help":
-                guiPrinter.printHelp(parser.getValidCommands());
+                guiPrinter.printHelp(commandParser.getValidCommands());
                 break;
             case "go":
                 goRoom(command);
