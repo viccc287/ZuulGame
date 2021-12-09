@@ -1,5 +1,8 @@
 [
   {
+    "startingRoom": "theatre"
+  },
+  {
     "name": "outside",
     "description": "outside the main entrance of the university",
     "northExit": "theatre",

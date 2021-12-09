@@ -23,7 +23,9 @@ public class RoomManager {
 
     }
 
-    public Room getRoomInstanceByName(String roomName){
-        return instantiator.getRoomInstanceByName(roomName);
+    public Room getStartingRoom(){
+        String startingRoomName = fileLoader.getStartingRoomName();
+
+        return instantiator.getRoomInstanceByName(startingRoomName);
     }
 }

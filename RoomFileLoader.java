@@ -17,6 +17,8 @@ public class RoomFileLoader {
 
     private final RoomInstantiator instantiator = RoomInstantiator.getInstance();
 
+    private String startingRoomName;
+
     private RoomFileLoader(){
 
     }
@@ -36,38 +38,48 @@ public class RoomFileLoader {
                 Hashtable<String, String> roomAttributes = new Hashtable<>();
 
                 JSONObject roomJson = (JSONObject) roomJsonArray.get(i);
-                String roomName = (String) roomJson.get("name");
-                if (roomName == null)
-                    throw new RoomFileKeyException("Error: Key \"name\" for some room does not exist in rooms.json file");
 
-                String roomDescription = (String) roomJson.get("description");
-                if (roomDescription == null)
-                    throw new RoomFileKeyException("Error: Key \"description\" for room \"" + roomName + "\" does not exist in rooms.json file");
+                if (i == 0){
+                    String startingRoomName = (String) roomJson.get("startingRoom");
+                    if (startingRoomName == null)
+                        throw new RoomFileKeyException("Error: Key \"startingRoom\" does not exist in rooms.json file");
+                    else this.startingRoomName = startingRoomName;
 
-                String roomNorthExit = (String) roomJson.get("northExit");
-                if (roomNorthExit == null)
-                    throw new RoomFileKeyException("Error: Key \"northExit\" for room \"" + roomName + "\" does not exist in rooms.json file");
+                }
+                else {
+                    String roomName = (String) roomJson.get("name");
+                    if (roomName == null)
+                        throw new RoomFileKeyException("Error: Key \"name\" for some room does not exist in rooms.json file");
 
-                String roomEastExit = (String) roomJson.get("eastExit");
-                if (roomEastExit == null)
-                    throw new RoomFileKeyException("Error: Key \"eastExit\" for room \"" + roomName + "\" does not exist in rooms.json file");
+                    String roomDescription = (String) roomJson.get("description");
+                    if (roomDescription == null)
+                        throw new RoomFileKeyException("Error: Key \"description\" for room \"" + roomName + "\" does not exist in rooms.json file");
 
-                String roomSouthExit = (String) roomJson.get("southExit");
-                if (roomSouthExit == null)
-                    throw new RoomFileKeyException("Error: Key \"southExit\" for room \"" + roomName + "\" does not exist in rooms.json file");
+                    String roomNorthExit = (String) roomJson.get("northExit");
+                    if (roomNorthExit == null)
+                        throw new RoomFileKeyException("Error: Key \"northExit\" for room \"" + roomName + "\" does not exist in rooms.json file");
 
-                String roomWestExit = (String) roomJson.get("westExit");
-                if (roomWestExit == null)
-                    throw new RoomFileKeyException("Error: Key \"westExit\" for room \"" + roomName + "\" does not exist in rooms.json file");
+                    String roomEastExit = (String) roomJson.get("eastExit");
+                    if (roomEastExit == null)
+                        throw new RoomFileKeyException("Error: Key \"eastExit\" for room \"" + roomName + "\" does not exist in rooms.json file");
 
-                roomAttributes.put("name",roomName);
-                roomAttributes.put("description",roomDescription);
-                roomAttributes.put("northExit",roomNorthExit);
-                roomAttributes.put("eastExit",roomEastExit);
-                roomAttributes.put("southExit",roomSouthExit);
-                roomAttributes.put("westExit",roomWestExit);
+                    String roomSouthExit = (String) roomJson.get("southExit");
+                    if (roomSouthExit == null)
+                        throw new RoomFileKeyException("Error: Key \"southExit\" for room \"" + roomName + "\" does not exist in rooms.json file");
 
-                roomsToCreate.add(roomAttributes);
+                    String roomWestExit = (String) roomJson.get("westExit");
+                    if (roomWestExit == null)
+                        throw new RoomFileKeyException("Error: Key \"westExit\" for room \"" + roomName + "\" does not exist in rooms.json file");
+
+                    roomAttributes.put("name", roomName);
+                    roomAttributes.put("description", roomDescription);
+                    roomAttributes.put("northExit", roomNorthExit);
+                    roomAttributes.put("eastExit", roomEastExit);
+                    roomAttributes.put("southExit", roomSouthExit);
+                    roomAttributes.put("westExit", roomWestExit);
+
+                    roomsToCreate.add(roomAttributes);
+                }
             }
 
         }
@@ -77,7 +89,9 @@ public class RoomFileLoader {
         return roomsToCreate;
     }
 
-
+    public String getStartingRoomName(){
+        return startingRoomName;
+    }
 
 
 }
