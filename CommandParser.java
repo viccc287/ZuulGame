@@ -11,21 +11,21 @@ public class CommandParser {
         String word_action = null;
         String word_direction = null;
         System.out.print(" > ");
-        parsingMethod();
+        parsingMethod(word_action,word_direction);
         if(commands.isCommand(word_action)) {
             return new Command(word_action, word_direction);
         } else {
             return new Command(null, word_direction);
         }
     }
-    private void parsingMethod(){
+    private void parsingMethod(String word_action, String word_direction){
         String inputLine;
         inputLine = reader.nextLine();
         Scanner inputData = new Scanner(inputLine);
         while(inputData.hasNext()){
-            String word_action = inputData.next();
+            word_action = inputData.next();
             if(inputData.hasNext()) {
-                String word_direction = inputData.next();
+                word_direction = inputData.next();
             }
         }
     }
