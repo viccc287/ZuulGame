@@ -13,4 +13,8 @@ public class CommandWords {
 
         return false;
     }
+
+    public static String[] getValidCommands() {
+        return validCommands;
+    }
 }
