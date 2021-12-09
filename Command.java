@@ -7,23 +7,19 @@ public class Command {
         this.directionWord = direction;
     }
 
-    public String getActionWord()
-    {
+    public String getActionWord() {
         return actionWord;
     }
 
-    public String getDirectionWord()
-    {
+    public String getDirectionWord() {
         return directionWord;
     }
 
-    public boolean isUnknown()
-    {
+    public boolean isUnknown() {
         return (actionWord == null);
     }
 
-    public boolean hasDirectionWord()
-    {
+    public boolean hasDirectionWord() {
         return (directionWord != null);
     }
 }

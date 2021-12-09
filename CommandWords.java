@@ -4,7 +4,7 @@ public class CommandWords {
 
     private final String[] validCommands = {"go", "quit", "help"};
 
-    private CommandWords(){
+    private CommandWords() {
 
     }
 

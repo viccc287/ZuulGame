@@ -3,18 +3,17 @@ public class CommandProcessor {
     private Room currentRoom;
     private final GUIPrinter guiPrinter;
 
-    public CommandProcessor(Room currentRoom, GUIPrinter guiPrinter){
+    public CommandProcessor(Room currentRoom, GUIPrinter guiPrinter) {
         this.currentRoom = currentRoom;
         this.guiPrinter = guiPrinter;
     }
 
-    public boolean processCommand(Parser parser)
-    {
+    public boolean processCommand(Parser parser) {
         boolean wantToQuit = false;
 
         Command command = parser.getCommand();
 
-        if(command.isUnknown()) {
+        if (command.isUnknown()) {
             guiPrinter.printUnknownCommandMessage();
             return false;
         }
@@ -30,9 +29,8 @@ public class CommandProcessor {
         return wantToQuit;
     }
 
-    private void goRoom(Command command)
-    {
-        if(!command.hasDirectionWord()) {
+    private void goRoom(Command command) {
+        if (!command.hasDirectionWord()) {
             guiPrinter.printNoDirectionMessage();
             return;
         }
@@ -40,38 +38,34 @@ public class CommandProcessor {
         String direction = command.getDirectionWord();
 
         Room nextRoom = null;
-        if(direction.equals("north")) {
+        if (direction.equals("north")) {
             nextRoom = currentRoom.getNorthExit();
         }
-        if(direction.equals("east")) {
+        if (direction.equals("east")) {
             nextRoom = currentRoom.getEastExit();
         }
-        if(direction.equals("south")) {
+        if (direction.equals("south")) {
             nextRoom = currentRoom.getSouthExit();
         }
-        if(direction.equals("west")) {
+        if (direction.equals("west")) {
             nextRoom = currentRoom.getWestExit();
         }
 
         if (nextRoom == null) {
             guiPrinter.printInvalidExitMessage();
-        }
-        else {
+        } else {
             currentRoom = nextRoom;
             guiPrinter.printCurrentLocation(currentRoom);
         }
 
 
-
     }
 
-    private boolean quit(Command command)
-    {
-        if(command.hasDirectionWord()) {
+    private boolean quit(Command command) {
+        if (command.hasDirectionWord()) {
             guiPrinter.printInvalidQuitMessage();
             return false;
-        }
-        else {
+        } else {
             return true;
         }
     }
