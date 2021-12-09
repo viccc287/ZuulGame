@@ -1,0 +1,45 @@
+[
+  {
+    "startingRoom": "outside"
+  },
+  {
+    "name": "outside",
+    "description": "outside the main entrance of the university",
+    "northExit": "theatre",
+    "eastExit": "lab",
+    "southExit": "pub",
+    "westExit": ""
+  },
+  {
+    "name": "theatre",
+    "description": "in a lecture theatre",
+    "northExit": "",
+    "eastExit": "",
+    "southExit": "",
+    "westExit": "outside"
+  },
+  {
+    "name": "pub",
+    "description": "in the campus pub",
+    "northExit": "",
+    "eastExit": "outside",
+    "southExit": "",
+    "westExit": ""
+  },
+  {
+    "name": "lab",
+    "description": "in a computing lab",
+    "northExit": "outside",
+    "eastExit": "office",
+    "southExit": "",
+    "westExit": ""
+  },
+  {
+    "name": "office",
+    "description": "in the computing admin office",
+    "northExit": "",
+    "eastExit": "",
+    "southExit": "",
+    "westExit": "lab"
+  }
+]
