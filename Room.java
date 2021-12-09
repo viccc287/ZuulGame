@@ -1,8 +1,8 @@
 
 public class Room
 {
-    private final String name;
-    private final String description;
+    private String name; //No borrar, el IDE lo sugiere porque no detecta que se usa en la reflection de RoomInstantiator
+    private String description;
     private Room northExit;
     private Room southExit;
     private Room eastExit;
@@ -10,8 +10,7 @@ public class Room
 
     public Room(String name, String description)
     {
-        this.name = name;
-        this.description = description;
+        initializeRoom(name, description);
     }
 
     public void setExits(Room northExit, Room eastExit, Room southExit, Room westExit)
@@ -26,13 +25,14 @@ public class Room
             this.westExit = westExit;
     }
 
+    private void initializeRoom(String name, String description){
+        this.name = name;
+        this.description = description;
+    }
+
     public String getDescription()
     {
         return description;
-    }
-
-    public String getName() {
-        return name;
     }
 
     public Room getNorthExit() {

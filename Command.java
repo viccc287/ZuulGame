@@ -1,29 +1,25 @@
 public class Command {
-    private final String commandWord;
-    private final String secondWord;
+    private final String actionWord;
+    private final String directionWord;
 
     public Command(String action, String direction) {
-        commandWord = action;
-        this.secondWord = direction;
+        actionWord = action;
+        this.directionWord = direction;
     }
 
-    public String getCommandWord()
-    {
-        return commandWord;
+    public String getActionWord() {
+        return actionWord;
     }
 
-    public String getSecondWord()
-    {
-        return secondWord;
+    public String getDirectionWord() {
+        return directionWord;
     }
 
-    public boolean isUnknown()
-    {
-        return (commandWord == null);
+    public boolean isUnknown() {
+        return (actionWord == null);
     }
 
-    public boolean hasSecondWord()
-    {
-        return (secondWord != null);
+    public boolean hasDirectionWord() {
+        return (directionWord != null);
     }
 }
