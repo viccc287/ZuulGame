@@ -1,6 +1,6 @@
 public class Commands {
-    private String commandWord;
-    private String secondWord;
+    private final String commandWord;
+    private final String secondWord;
 
     public Commands(String action, String direction) {
         commandWord = action;
