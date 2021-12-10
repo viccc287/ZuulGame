@@ -54,16 +54,4 @@ public class Room
         return westExit;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Room room = (Room) o;
-        return Objects.equals(name, room.name) && Objects.equals(description, room.description) && Objects.equals(northExit, room.northExit) && Objects.equals(southExit, room.southExit) && Objects.equals(eastExit, room.eastExit) && Objects.equals(westExit, room.westExit);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(name, description, northExit, southExit, eastExit, westExit);
-    }
 }
