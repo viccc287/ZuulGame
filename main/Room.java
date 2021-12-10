@@ -1,7 +1,5 @@
 package main;
 
-import java.util.Objects;
-
 public class Room
 {
     private String name; //No borrar, el IDE lo sugiere porque no detecta que se usa en la reflection de RoomInstantiator
