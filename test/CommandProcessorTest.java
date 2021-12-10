@@ -22,7 +22,7 @@ public class CommandProcessorTest {
     public static Collection<Object> getData(){
         return Arrays.asList(new Object[][]{
                 {new Command("go","west")},
-                {new Command("quit","east")},
+                {new Command("go","east")},
                 {new Command("go","south")},
                 {new Command("go","north")},
         });
@@ -49,4 +49,10 @@ public class CommandProcessorTest {
         assertTrue(directionedToRoom);
     }
 
+
+    @Test
+    public void processCommandTest(){
+        boolean quit = commandProcessor.processCommand(new CommandParser());
+        assertTrue(quit);
+    }
 }
