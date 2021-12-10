@@ -1,11 +1,13 @@
 package main;
 
 import exceptions.RoomFileKeyException;
+import exceptions.RoomsFileNotFoundException;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -26,11 +28,11 @@ public class RoomFileLoader {
         return instance;
     }
 
-    public List<Hashtable<String,String>> parseRooms(){
+    public List<Hashtable<String,String>> parseRooms(String filename){
 
         List<Hashtable<String,String>> roomsToCreate = new ArrayList<>();
         try {
-            Object jsonParse = new JSONParser().parse(new FileReader("rooms.json"));
+            Object jsonParse = new JSONParser().parse(new FileReader(filename));
             JSONArray roomJsonArray = (JSONArray) jsonParse;
 
             for (int i = 0; i < roomJsonArray.size(); i++) {
@@ -79,6 +81,9 @@ public class RoomFileLoader {
                 }
             }
 
+        }
+        catch (FileNotFoundException e){
+            throw new RoomsFileNotFoundException("Error: Room config file not found, please check file or directory names");
         }
         catch (IOException | ParseException e){
             e.printStackTrace();
