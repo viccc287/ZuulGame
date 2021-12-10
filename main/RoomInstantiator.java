@@ -1,3 +1,5 @@
+package main;
+
 import exceptions.RoomFileKeyException;
 import exceptions.RoomInstanceNotFoundException;
 import exceptions.RoomNotFoundException;
@@ -51,7 +53,7 @@ public class RoomInstantiator {
 
     public void setExitsForRoomInstances(List<Hashtable<String,String>> roomsToCreate){
 
-        roomsToCreateNames.add(""); //Para que sea válido dejar las salidas vacías.
+        roomsToCreateNames.add(""); //Para que al verificar si se encuentra el nombre, se permita el vacío
 
         for (Hashtable<String,String> roomToCreate : roomsToCreate){
 
@@ -73,7 +75,7 @@ public class RoomInstantiator {
 
             roomToCreateExits.add(roomToCreateWestExit);
 
-
+            //Deben existir en el arreglo de nombres todos los nombres de las salidas a setear
             if (roomsToCreateNames.containsAll(roomToCreateExits)){
                 Room roomInstanceToSet = roomInstances.get(roomToCreateName);
                 Room roomNorthExitToSet = roomInstances.get(roomToCreateNorthExit);

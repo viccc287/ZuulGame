@@ -1,10 +1,12 @@
+package main;
+
 public class CommandWords {
 
     private static CommandWords instance;
 
     private final String[] validCommands = {"go", "quit", "help"};
 
-    private CommandWords(){
+    private CommandWords() {
 
     }
 
@@ -23,6 +25,8 @@ public class CommandWords {
     }
 
     public String[] getValidCommands() {
-        return validCommands;
+        String[] result = new String[validCommands.length];
+        System.arraycopy(validCommands, 0, result, 0, validCommands.length);
+        return result;
     }
 }
