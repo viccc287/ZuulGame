@@ -19,7 +19,7 @@ public class RoomManager {
     }
 
     public void createRooms() {
-        List<Hashtable<String,String>> roomsToCreate = fileLoader.parseRooms();
+        List<Hashtable<String,String>> roomsToCreate = fileLoader.parseRooms("main/rooms.json");
         instantiator.createRoomInstances(roomsToCreate);
         instantiator.setExitsForRoomInstances(roomsToCreate);
 
