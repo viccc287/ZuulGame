@@ -2,7 +2,7 @@ package test;
 
 import exceptions.RoomFileKeyException;
 import exceptions.RoomsFileNotFoundException;
-import main.RoomFileLoader;
+import src.RoomFileLoader;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -27,7 +27,7 @@ public class RoomFileLoaderTest {
         Hashtable<String, String> room1= new Hashtable<>();
         Hashtable<String, String> room2= new Hashtable<>();
         room1.put("name", "outside");
-        room1.put("description", "outside the main entrance of the university");
+        room1.put("description", "outside the src entrance of the university");
         room1.put("northExit","theatre");
         room1.put("eastExit","lab");
         room1.put("southExit","pub");
