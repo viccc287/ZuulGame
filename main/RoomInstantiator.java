@@ -40,7 +40,7 @@ public class RoomInstantiator {
 
                 roomInstances.put(roomToCreateName,roomInstance);
             }
-            catch (InvocationTargetException | InstantiationException | IllegalAccessException | NoSuchMethodException | RoomFileKeyException e) {
+            catch (InvocationTargetException | InstantiationException | IllegalAccessException | NoSuchMethodException e) {
                 e.printStackTrace();
             } {
 

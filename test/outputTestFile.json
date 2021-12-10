@@ -1,0 +1,21 @@
+[
+  {
+    "startingRoom": "outside"
+  },
+  {
+    "name": "outside",
+    "description": "outside the main entrance of the university",
+    "northExit": "theatre",
+    "eastExit": "lab",
+    "southExit": "pub",
+    "westExit": ""
+  },
+  {
+    "name": "theatre",
+    "description": "in a lecture theatre",
+    "northExit": "",
+    "eastExit": "",
+    "southExit": "",
+    "westExit": "outside"
+  }
+]

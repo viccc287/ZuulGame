@@ -38,10 +38,10 @@ public class CommandProcessor {
         return wantToQuit;
     }
 
-    private void goRoom(Command command) {
+    public boolean goRoom(Command command) {
         if (!command.hasDirectionWord()) {
             guiPrinter.printNoDirectionMessage();
-            return;
+            return false;
         }
 
         String direction = command.getDirectionWord();
@@ -65,9 +65,11 @@ public class CommandProcessor {
 
         if (nextRoom == null) {
             guiPrinter.printInvalidExitMessage();
+            return false;
         } else {
             currentRoom = nextRoom;
             guiPrinter.printCurrentLocation(currentRoom);
+            return true;
         }
 
 

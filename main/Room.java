@@ -51,4 +51,5 @@ public class Room
     public Room getWestExit() {
         return westExit;
     }
+
 }
