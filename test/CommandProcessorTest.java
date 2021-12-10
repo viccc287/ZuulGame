@@ -1,6 +1,6 @@
 package test;
 
-import main.*;
+import src.*;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -34,7 +34,7 @@ public class CommandProcessorTest {
 
     @Before
     public void before(){
-        currentRoom = new Room("outside","outside the main entrance of the university");
+        currentRoom = new Room("outside","outside the src entrance of the university");
         Room northExit = new Room("north","moved to north");
         Room eastExit = new Room("east","moved to east");
         Room southExit = new Room("south","moved to south");

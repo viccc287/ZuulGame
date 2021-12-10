@@ -1,4 +1,4 @@
-package main;
+package src;
 
 import java.util.Hashtable;
 import java.util.List;
@@ -19,7 +19,7 @@ public class RoomManager {
     }
 
     public void createRooms() {
-        List<Hashtable<String,String>> roomsToCreate = fileLoader.parseRooms("main/rooms.json");
+        List<Hashtable<String,String>> roomsToCreate = fileLoader.parseRooms("rooms.json");
         instantiator.createRoomInstances(roomsToCreate);
         instantiator.setExitsForRoomInstances(roomsToCreate);
 

@@ -1,6 +1,6 @@
 package test;
 
-import main.Game;
+import src.Game;
 import org.junit.Test;
 
 
