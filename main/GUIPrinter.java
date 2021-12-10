@@ -1,3 +1,5 @@
+package main;
+
 public class GUIPrinter {
     public void printWelcome(Room currentRoom) {
         System.out.println();

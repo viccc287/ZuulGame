@@ -1,3 +1,5 @@
+package main;
+
 import java.util.Scanner;
 public class CommandParser {
     private final Scanner reader;

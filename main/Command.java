@@ -1,3 +1,5 @@
+package main;
+
 public class Command {
     private final String actionWord;
     private final String directionWord;

@@ -1,5 +1,4 @@
-import java.util.Collections;
-import java.util.List;
+package main;
 
 public class CommandWords {
 

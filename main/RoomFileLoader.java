@@ -1,3 +1,5 @@
+package main;
+
 import exceptions.RoomFileKeyException;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;

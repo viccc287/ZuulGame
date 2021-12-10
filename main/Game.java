@@ -1,3 +1,4 @@
+package main;
 
 public class Game {
     public Room currentRoom;

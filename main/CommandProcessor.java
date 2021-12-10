@@ -1,3 +1,5 @@
+package main;
+
 public class CommandProcessor {
 
     private Room currentRoom;

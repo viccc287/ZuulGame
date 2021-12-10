@@ -1,3 +1,5 @@
+package main;
+
 import exceptions.RoomFileKeyException;
 import exceptions.RoomInstanceNotFoundException;
 import exceptions.RoomNotFoundException;
