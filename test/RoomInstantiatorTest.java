@@ -7,9 +7,6 @@ import main.Room;
 import main.RoomInstantiator;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.JUnit4;
-
 import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.List;
