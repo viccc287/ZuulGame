@@ -23,7 +23,7 @@ public class CommandWordsTest {
     public static Collection<Object> getData(){
         return  Arrays.asList(new Object[][]{
                 {new String[]{"go","quit","help","go"}},//Ejemplo valido
-                {new String[]{"go","quit","hep","run"}},//Ejemplo fallo
+                {new String[]{"go","quit","help","run"}},//Ejemplo fallo
         });
     }
 
